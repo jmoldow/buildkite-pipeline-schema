@@ -262,18 +262,7 @@
                     "type": "string"
                   },
                   {
-                    "type": "object",
-                    "properties": {
-                      "channels": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "message": {
-                        "type": "string"
-                      }
-                    }
+                    "$ref": "#/definitions/slack"
                   }
                 ]
               },
@@ -311,14 +300,7 @@
             "type": "object",
             "properties": {
               "github_commit_status": {
-                "type": "object",
-                "properties": {
-                  "context": {
-                    "description": "GitHub commit status name",
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
+                "$ref": "#/definitions/githubCommitStatus"
               },
               "if": {
                 "$ref": "#/definitions/if"
@@ -912,19 +894,7 @@
                         "type": "string"
                       },
                       {
-                        "type": "object",
-                        "properties": {
-                          "channels": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
-                          "message": {
-                            "type": "string"
-                          }
-                        },
-                        "additionalProperties": false
+                        "$ref": "#/definitions/slack"
                       }
                     ]
                   },
@@ -938,14 +908,7 @@
                 "type": "object",
                 "properties": {
                   "github_commit_status": {
-                    "type": "object",
-                    "properties": {
-                      "context": {
-                        "description": "GitHub commit status name",
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": false
+                    "$ref": "#/definitions/githubCommitStatus"
                   },
                   "if": {
                     "$ref": "#/definitions/if"
@@ -1106,6 +1069,7 @@
     },
     "waitStep": {
       "type": "object",
+      "description": "Waits for previous steps to pass before continuing",
       "properties": {
         "allow_dependency_failure": {
           "$ref": "#/definitions/allowDependencyFailure"
@@ -1155,7 +1119,6 @@
       "type": "object",
       "properties": {
         "wait": {
-          "description": "Waits for previous steps to pass before continuing",
           "$ref": "#/definitions/waitStep"
         },
         "waiter": {
@@ -1336,6 +1299,30 @@
       },
       "required": ["group", "steps"],
       "additionalProperties": false
+    },
+    "githubCommitStatus": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "description": "GitHub commit status name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "slack": {
+      "type": "object",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
     }
   },
   "properties": {
