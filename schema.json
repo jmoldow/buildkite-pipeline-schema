@@ -422,45 +422,36 @@
       "additionalProperties": false
     },
     "buildNotify": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/notifyEmail"
-        },
-        {
-          "$ref": "#/definitions/notifyBasecamp"
-        },
-        {
-          "$ref": "#/definitions/notifySlack"
-        },
-        {
-          "$ref": "#/definitions/notifyWebhook"
-        },
-        {
-          "$ref": "#/definitions/notifyPagerduty"
-        },
-        {
-          "$ref": "#/definitions/notifyGithubCommitStatus"
-        },
-        {
-          "$ref": "#/definitions/notifyGithubCheck"
-        }
-      ]
-    },
-    "commandNotify": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/notifyBasecamp"
-        },
-        {
-          "$ref": "#/definitions/notifySlack"
-        },
-        {
-          "$ref": "#/definitions/notifyGithubCommitStatus"
-        },
-        {
-          "$ref": "#/definitions/notifyGithubCheck"
-        }
-      ]
+      "type": "array",
+      "description": "Array of notification options for this step",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/notifySimple"
+          },
+          {
+            "$ref": "#/definitions/notifyEmail"
+          },
+          {
+            "$ref": "#/definitions/notifyBasecamp"
+          },
+          {
+            "$ref": "#/definitions/notifySlack"
+          },
+          {
+            "$ref": "#/definitions/notifyWebhook"
+          },
+          {
+            "$ref": "#/definitions/notifyPagerduty"
+          },
+          {
+            "$ref": "#/definitions/notifyGithubCommitStatus"
+          },
+          {
+            "$ref": "#/definitions/notifyGithubCheck"
+          }
+        ]
+      }
     },
     "fields": {
       "type": "array",
@@ -1150,7 +1141,16 @@
                 "$ref": "#/definitions/notifySimple"
               },
               {
-                "$ref": "#/definitions/buildNotify"
+                "$ref": "#/definitions/notifyBasecamp"
+              },
+              {
+                "$ref": "#/definitions/notifySlack"
+              },
+              {
+                "$ref": "#/definitions/notifyGithubCommitStatus"
+              },
+              {
+                "$ref": "#/definitions/notifyGithubCheck"
               }
             ]
           }
@@ -1564,18 +1564,7 @@
           "$ref": "#/definitions/allowDependencyFailure"
         },
         "notify": {
-          "type": "array",
-          "description": "Array of notification options for this step",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/notifySimple"
-              },
-              {
-                "$ref": "#/definitions/buildNotify"
-              }
-            ]
-          }
+          "$ref": "#/definitions/buildNotify"
         },
         "skip": {
           "$ref": "#/definitions/skip"
@@ -1644,18 +1633,7 @@
       "$ref": "#/definitions/agents"
     },
     "notify": {
-      "type": "array",
-      "description": "Array of notification options for this step",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/definitions/notifySimple"
-          },
-          {
-            "$ref": "#/definitions/buildNotify"
-          }
-        ]
-      }
+      "$ref": "#/definitions/buildNotify"
     },
     "image": {
       "$ref": "#/definitions/image"
