@@ -446,6 +446,22 @@
         }
       ]
     },
+    "commandNotify": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/notifyBasecamp"
+        },
+        {
+          "$ref": "#/definitions/notifySlack"
+        },
+        {
+          "$ref": "#/definitions/notifyGithubCommitStatus"
+        },
+        {
+          "$ref": "#/definitions/notifyGithubCheck"
+        }
+      ]
+    },
     "fields": {
       "type": "array",
       "description": "A list of input fields required to be filled out before unblocking the step",
@@ -1134,16 +1150,7 @@
                 "$ref": "#/definitions/notifySimple"
               },
               {
-                "$ref": "#/definitions/notifyBasecamp"
-              },
-              {
-                "$ref": "#/definitions/notifySlack"
-              },
-              {
-                "$ref": "#/definitions/notifyGithubCommitStatus"
-              },
-              {
-                "$ref": "#/definitions/notifyGithubCheck"
+                "$ref": "#/definitions/buildNotify"
               }
             ]
           }
