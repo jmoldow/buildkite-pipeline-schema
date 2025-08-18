@@ -422,36 +422,29 @@
       "additionalProperties": false
     },
     "buildNotify": {
-      "type": "array",
-      "description": "Array of notification options for this step",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/definitions/notifySimple"
-          },
-          {
-            "$ref": "#/definitions/notifyEmail"
-          },
-          {
-            "$ref": "#/definitions/notifyBasecamp"
-          },
-          {
-            "$ref": "#/definitions/notifySlack"
-          },
-          {
-            "$ref": "#/definitions/notifyWebhook"
-          },
-          {
-            "$ref": "#/definitions/notifyPagerduty"
-          },
-          {
-            "$ref": "#/definitions/notifyGithubCommitStatus"
-          },
-          {
-            "$ref": "#/definitions/notifyGithubCheck"
-          }
-        ]
-      }
+      "oneOf": [
+        {
+          "$ref": "#/definitions/notifyEmail"
+        },
+        {
+          "$ref": "#/definitions/notifyBasecamp"
+        },
+        {
+          "$ref": "#/definitions/notifySlack"
+        },
+        {
+          "$ref": "#/definitions/notifyWebhook"
+        },
+        {
+          "$ref": "#/definitions/notifyPagerduty"
+        },
+        {
+          "$ref": "#/definitions/notifyGithubCommitStatus"
+        },
+        {
+          "$ref": "#/definitions/notifyGithubCheck"
+        }
+      ]
     },
     "fields": {
       "type": "array",
@@ -1564,7 +1557,18 @@
           "$ref": "#/definitions/allowDependencyFailure"
         },
         "notify": {
-          "$ref": "#/definitions/buildNotify"
+          "type": "array",
+          "description": "Array of notification options for this step",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/notifySimple"
+              },
+              {
+                "$ref": "#/definitions/buildNotify"
+              }
+            ]
+          }
         },
         "skip": {
           "$ref": "#/definitions/skip"
@@ -1633,7 +1637,18 @@
       "$ref": "#/definitions/agents"
     },
     "notify": {
-      "$ref": "#/definitions/buildNotify"
+      "type": "array",
+      "description": "Array of notification options for this step",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/notifySimple"
+          },
+          {
+            "$ref": "#/definitions/buildNotify"
+          }
+        ]
+      }
     },
     "image": {
       "$ref": "#/definitions/image"
