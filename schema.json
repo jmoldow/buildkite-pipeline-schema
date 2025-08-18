@@ -305,13 +305,6 @@
         ":docker: Build"
       ]
     },
-    "notifySimple": {
-      "type": "string",
-      "enum": [
-        "github_check",
-        "github_commit_status"
-      ]
-    },
     "notifyEmail": {
       "type": "object",
       "properties": {
@@ -426,9 +419,6 @@
       "description": "Array of notification options for this step",
       "items": {
         "oneOf": [
-          {
-            "$ref": "#/definitions/notifySimple"
-          },
           {
             "$ref": "#/definitions/notifyEmail"
           },
@@ -1137,9 +1127,6 @@
           "description": "Array of notification options for this step",
           "items": {
             "oneOf": [
-              {
-                "$ref": "#/definitions/notifySimple"
-              },
               {
                 "$ref": "#/definitions/notifyBasecamp"
               },
