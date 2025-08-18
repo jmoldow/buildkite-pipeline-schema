@@ -443,6 +443,26 @@
         ]
       }
     },
+    "commandNotify": {
+        "type": "array",
+        "description": "Array of notification options for this step",
+        "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/notifyBasecamp"
+              },
+              {
+                "$ref": "#/definitions/notifySlack"
+              },
+              {
+                "$ref": "#/definitions/notifyGithubCommitStatus"
+              },
+              {
+                "$ref": "#/definitions/notifyGithubCheck"
+              }
+            ]
+        }
+    },
     "fields": {
       "type": "array",
       "description": "A list of input fields required to be filled out before unblocking the step",
@@ -1123,24 +1143,7 @@
           "$ref": "#/definitions/commandStep/properties/label"
         },
         "notify": {
-          "type": "array",
-          "description": "Array of notification options for this step",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/notifyBasecamp"
-              },
-              {
-                "$ref": "#/definitions/notifySlack"
-              },
-              {
-                "$ref": "#/definitions/notifyGithubCommitStatus"
-              },
-              {
-                "$ref": "#/definitions/notifyGithubCheck"
-              }
-            ]
-          }
+          "$ref": "#/definitions/commandNotify"
         },
         "parallelism": {
           "type": "integer",
